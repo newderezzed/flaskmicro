@@ -2,6 +2,8 @@
 from flask_script import Manager
 from project import create_app, db
 import unittest
+from project.api.models import User
+
 app = create_app()
 manager = Manager(app)
 
@@ -14,7 +16,6 @@ def recreate_db():
     db.session.commit()
 
 
-
 @manager.command
 def test():
     """运行测试."""
@@ -24,6 +25,13 @@ def test():
         return 0
     return 1
 
+
+@manager.command
+def seed_db():
+    """Seeds the database."""
+    db.session.add(User(username='cnych', email="qikqiak@gmail.com"))
+    db.session.add(User(username='chyang', email="icnych@gmail.com"))
+    db.session.commit()
 
 
 if __name__ == '__main__':
