@@ -23,7 +23,6 @@ services:
       - DATABASE_URL=mysql+pymysql://root:root321@users-db:3306/users_dev
       - DATABASE_TEST_URL=mysql+pymysql://root:root321@users-db:3306/users_test
     depends_on:
-    depends_on:
       users-db:
         condition: service_healthy
     links:
